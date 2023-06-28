@@ -116,7 +116,7 @@ export default defineComponent({
           icon: 'mdi-apps',
           title: 'Welcome',
           to: '/'
-        },
+        }
       ],
       miniVariant: false,
       right: true,
