@@ -1,13 +1,40 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <h1>Merda</h1>
-    </v-col>
-  </v-row>
+  <div>
+    <v-card
+      v-for="tap in taps"
+      :key="tap.name"
+      outlined
+    >
+      <v-card-text>
+        Latitude: {{ tap.lat }}
+        <br>
+        Longitude: {{ tap.lon }}
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
 
 <script lang="ts">
-export default {
-  name: 'IndexPage'
+import { defineComponent } from 'vue'
+
+interface Tap {
+  name: string,
+  lat: number,
+  lon: number
 }
+
+export default defineComponent({
+  name: 'IndexPage',
+  data () {
+    return {
+      taps: [
+        {
+          name: '1',
+          lat: 41.6367603208299,
+          lon: -8.14457114236497
+        }
+      ] as Tap[]
+    }
+  }
+})
 </script>
