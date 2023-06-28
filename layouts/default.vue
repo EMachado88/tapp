@@ -88,9 +88,24 @@
   </v-app>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from 'vue'
+
+interface User {
+  firstName: string
+  lastName: string
+}
+
+export default defineComponent({
   name: 'DefaultLayout',
+
+  props: {
+    user: {
+      type: Object as PropType<User>,
+      required: true
+    }
+  },
+
   data () {
     return {
       clipped: false,
@@ -102,11 +117,6 @@ export default {
           title: 'Welcome',
           to: '/'
         },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
       ],
       miniVariant: false,
       right: true,
@@ -114,5 +124,5 @@ export default {
       title: 'Vuetify.js'
     }
   }
-}
+})
 </script>
