@@ -1,127 +1,80 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
     <v-main>
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
     <v-footer
-      :absolute="!fixed"
-      app
+      fixed
+      padless
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <v-card
+        flat
+        tile
+        width="100%"
+        class="red lighten-1 text-center"
+      >
+        <v-card-text>
+          <span
+            v-for="item in navItems"
+            :key="item.icon"
+            class="nav-item"
+          >
+            <v-btn
+              class="mx-4"
+              text
+              :to="item.path"
+              fab
+              x-large
+            >
+              <v-icon size="32px">
+                {{ item.icon }}
+              </v-icon>
+            </v-btn>
+          </span>
+        </v-card-text>
+
+        <v-divider />
+
+        <v-card-text class="white--text text-caption">
+          <strong>Taps</strong> | &copy; {{ new Date().getFullYear() }} <strong>Emanuel Machado</strong>. All rights reserved.
+        </v-card-text>
+      </v-card>
     </v-footer>
   </v-app>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
 
-interface User {
-  firstName: string
-  lastName: string
+interface NavItem {
+  name: string,
+  icon: string,
+  path: string
 }
 
 export default defineComponent({
   name: 'DefaultLayout',
-
-  props: {
-    user: {
-      type: Object as PropType<User>,
-      required: true
-    }
-  },
-
   data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
+      navItems: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
+          name: 'Home',
+          icon: 'mdi-home',
+          path: '/'
+        },
+        {
+          name: 'Map',
+          icon: 'mdi-map-marker',
+          path: '/map'
+        },
+        {
+          name: 'Settings',
+          icon: 'mdi-cog',
+          path: '/settings'
         }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      ] as NavItem[]
     }
   }
 })
