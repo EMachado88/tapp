@@ -1,5 +1,7 @@
 export interface Tap {
   name: string,
-  lat: number,
-  lon: number
+  position: {
+    lat: number,
+    lng: number
+  }
 }

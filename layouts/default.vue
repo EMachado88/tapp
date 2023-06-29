@@ -1,33 +1,13 @@
 <template>
   <v-app dark>
     <v-main class="main">
-      <v-container>
-        <Nuxt />
-      </v-container>
+      <Nuxt />
     </v-main>
-    <v-footer
-      fixed
-      padless
-    >
-      <v-card
-        flat
-        tile
-        width="100%"
-        class="red lighten-1 text-center"
-      >
+    <v-footer fixed padless>
+      <v-card flat tile width="100%" class="red lighten-1 text-center">
         <v-card-text>
-          <span
-            v-for="item in navItems"
-            :key="item.icon"
-            class="nav-item"
-          >
-            <v-btn
-              class="mx-4"
-              text
-              :to="item.path"
-              fab
-              x-large
-            >
+          <span v-for="item in navItems" :key="item.icon" class="nav-item">
+            <v-btn class="mx-4" text :to="item.path" fab x-large>
               <v-icon size="32px">
                 {{ item.icon }}
               </v-icon>
@@ -38,7 +18,8 @@
         <v-divider />
 
         <v-card-text class="white--text text-caption">
-          <strong>Taps</strong> | &copy; {{ new Date().getFullYear() }} <strong>Emanuel Machado</strong>. All rights reserved.
+          <strong>Tapp</strong> | &copy; {{ new Date().getFullYear() }} <strong>Emanuel Machado</strong>. All rights
+          reserved.
         </v-card-text>
       </v-card>
     </v-footer>
