@@ -18,23 +18,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-interface Tap {
-  name: string,
-  lat: number,
-  lon: number
-}
+import { taps } from '@/mocks/taps'
 
 export default defineComponent({
   name: 'IndexPage',
   data () {
     return {
-      taps: [
-        {
-          name: '1',
-          lat: 41.6367603208299,
-          lon: -8.14457114236497
-        }
-      ] as Tap[]
+      taps
     }
   }
 })
