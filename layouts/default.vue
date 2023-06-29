@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-main>
+    <v-main class="main">
       <v-container>
         <Nuxt />
       </v-container>
@@ -75,3 +75,10 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss">
+.main {
+  max-height: calc(100vh - 157px);
+  overflow: auto;
+}
+</style>
