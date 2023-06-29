@@ -10,7 +10,7 @@
         <v-card-text>
           Latitude: {{ tap.position.lat }}
           <br>
-          Longitude: {{ tap.position.lon }}
+          Longitude: {{ tap.position.lng }}
         </v-card-text>
       </v-card>
     </article>
