@@ -48,11 +48,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-interface NavItem {
-  name: string,
-  icon: string,
-  path: string
-}
+import { NavItem } from '@/types/NavItem'
 
 export default defineComponent({
   name: 'DefaultLayout',
