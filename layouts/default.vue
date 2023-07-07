@@ -40,17 +40,17 @@ export default defineComponent({
           name: 'Home',
           icon: 'mdi-home',
           path: '/'
-        },
+        } as NavItem,
         {
           name: 'Map',
           icon: 'mdi-map-marker',
           path: '/map'
-        },
+        } as NavItem,
         {
           name: 'Settings',
           icon: 'mdi-cog',
           path: '/settings'
-        }
+        } as NavItem
       ] as NavItem[]
     }
   }
