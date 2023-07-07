@@ -38,11 +38,15 @@ export default defineComponent({
     return {
       taps,
       mapCenter: { lat: 10, lng: 10 },
-      userPosition: { lat: 10, lng: 10 }
+      userPosition: { lat: 10, lng: 10 },
+      watchId: 0
     }
   },
   mounted () {
     this.geolocateAndCenter()
+  },
+  beforeUnmount () {
+    navigator.geolocation.clearWatch(this.watchId)
   },
   methods: {
     geolocateAndCenter () {
@@ -57,7 +61,7 @@ export default defineComponent({
       })
 
       // Watch position and move user marker
-      navigator.geolocation.watchPosition((position) => {
+      this.watchId = navigator.geolocation.watchPosition((position) => {
         const positionLatLng = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
