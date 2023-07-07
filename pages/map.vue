@@ -6,6 +6,7 @@
     :options="{
       mapTypeControl: false,
       zoomControl: false,
+      disableDefaultUI: true
     }"
     style="width: 100%; height: 100%"
   >
