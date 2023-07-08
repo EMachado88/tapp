@@ -9,6 +9,7 @@
         zoomControl: false,
         disableDefaultUI: true
       }"
+      @center_changed="$store.dispatch('position/setMapCenter', $event.map.center)"
     >
       <GMapMarker
         :position="userPosition"

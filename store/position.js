@@ -22,7 +22,9 @@ export const mutations = {
   },
   centerMap (state) {
     state.mapCenter = state.userPosition
-    console.log('Map centered on user position')
+  },
+  setMapCenter (state, position) {
+    state.mapCenter = position
   }
 }
 
@@ -47,5 +49,8 @@ export const actions = {
   },
   centerMap ({ commit }) {
     commit('centerMap')
+  },
+  setMapCenter ({ commit }, position) {
+    commit('setMapCenter', position)
   }
 }
