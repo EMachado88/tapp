@@ -33,6 +33,7 @@
       absolute
       bottom
       right
+      @click="$store.dispatch('position/centerMap')"
     >
       <v-icon>mdi-crosshairs-gps</v-icon>
     </v-btn>
