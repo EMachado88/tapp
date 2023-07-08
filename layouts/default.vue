@@ -20,7 +20,7 @@
         <v-divider />
 
         <v-card-text class="white--text text-caption">
-          <strong>Tapp</strong> | &copy; {{ new Date().getFullYear() }} <strong>Emanuel Machado</strong>. All rights
+          &copy; {{ new Date().getFullYear() }} <strong>Tapp</strong>. All rights
           reserved.
         </v-card-text>
       </v-card>
