@@ -29,11 +29,10 @@ export const actions = {
   setUserPosition ({ commit, state }) {
     // Watch position and move user marker
     commit('setWatchId', navigator.geolocation.watchPosition((position) => {
-      const positionLatLng = {
+      commit('setUserPosition', {
         lat: position.coords.latitude,
         lng: position.coords.longitude
-      }
-      commit('setUserPosition', positionLatLng)
+      })
 
       if (!(state.userPosition.lat === 0 && state.userPosition.lng === 0)) {
         commit('setMapCenter', state.userPosition)
@@ -44,9 +43,8 @@ export const actions = {
       enableHighAccuracy: true
     }))
   },
-  centerMap ({ commit, state }, map) {
-    commit('setMapCenter', state.userPosition)
-    console.log(map)
+  async centerMap ({ commit, state }, map) {
+    await commit('setMapCenter', state.userPosition)
     map.initMap()
   },
   setMapCenter ({ commit }, position) {
