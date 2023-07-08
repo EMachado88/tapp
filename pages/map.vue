@@ -14,7 +14,7 @@
       <GMapMarker
         :position="userPosition"
         :clickable="true"
-        :options="{ icon: '/images/rec.png' }"
+        :options="{ icon: `${assetsPath}/images/rec.png` }"
       />
 
       <GMapMarker
@@ -57,7 +57,10 @@ export default defineComponent({
     ...mapGetters({
       userPosition: 'position/getUserPosition',
       mapCenter: 'position/getMapCenter'
-    })
+    }),
+    assetsPath () {
+      return process.env.NODE_ENV === 'production' ? '/tapp' : ''
+    }
   }
 })
 </script>

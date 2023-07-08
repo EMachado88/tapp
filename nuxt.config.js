@@ -1,5 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
+const baseURL = process.env.NODE_ENV === 'production' ? '/tapp/' : '/'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -26,8 +28,12 @@ export default {
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
+  app: {
+    baseURL
+  },
+
   router: {
-    base: process.env.NODE_ENV === 'production' ? '/tapp/' : '/'
+    base: baseURL
   },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
