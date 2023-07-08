@@ -41,7 +41,6 @@ export const actions = {
     error => console.error(error), // eslint-disable-line
     {
       enableHighAccuracy: true,
-      timeout: 5000,
       maximumAge: 0
     }))
   },

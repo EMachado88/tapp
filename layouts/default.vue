@@ -6,13 +6,15 @@
     <v-footer fixed padless>
       <v-card flat tile width="100%" class="red lighten-1 text-center">
         <v-card-text>
-          <span v-for="item in navItems" :key="item.icon" class="nav-item">
-            <v-btn class="mx-4" text :to="item.path" fab x-large>
-              <v-icon size="32px">
-                {{ item.icon }}
-              </v-icon>
-            </v-btn>
-          </span>
+          <nav>
+            <span v-for="item in navItems" :key="item.icon" class="nav-item">
+              <v-btn class="mx-4" text :to="item.path" fab x-large>
+                <v-icon size="32px">
+                  {{ item.icon }}
+                </v-icon>
+              </v-btn>
+            </span>
+          </nav>
         </v-card-text>
 
         <v-divider />
