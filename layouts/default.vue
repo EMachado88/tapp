@@ -64,8 +64,9 @@ export default defineComponent({
     this.$store.dispatch('position/setUserPosition')
   },
   methods: {
-    handleTapSelect (_tap: Tap) {
+    handleTapSelect (tap: Tap) {
       this.$nuxt.$router.push('/map')
+      this.$store.dispatch('position/setMapCenter', tap.position)
     }
   }
 })
