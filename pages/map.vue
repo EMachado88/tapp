@@ -1,32 +1,30 @@
 <template>
   <div id="map-wrap">
-    <ClientOnly fallback-tag="span" fallback="Loading map...">
-      <GMap
-        ref="map"
-        :center="mapCenter"
-        :zoom="18"
-        :options="{
-          mapTypeControl: false,
-          zoomControl: false,
-          disableDefaultUI: true
-        }"
-      >
-        <GMapMarker
-          :position="userPosition"
-          :clickable="true"
-          :options="{ icon: '/images/rec.png' }"
-          @click="mapCenter = userPosition"
-        />
+    <GMap
+      ref="map"
+      :center="mapCenter"
+      :zoom="18"
+      :options="{
+        mapTypeControl: false,
+        zoomControl: false,
+        disableDefaultUI: true
+      }"
+    >
+      <GMapMarker
+        :position="userPosition"
+        :clickable="true"
+        :options="{ icon: '/images/rec.png' }"
+        @click="mapCenter = userPosition"
+      />
 
-        <GMapMarker
-          v-for="(tap, index) in taps"
-          :key="index"
-          :position="tap.position"
-          :clickable="true"
-          @click="mapCenter = tap.position"
-        />
-      </GMap>
-    </ClientOnly>
+      <GMapMarker
+        v-for="(tap, index) in taps"
+        :key="index"
+        :position="tap.position"
+        :clickable="true"
+        @click="mapCenter = tap.position"
+      />
+    </GMap>
 
     <v-btn
       color="red"
