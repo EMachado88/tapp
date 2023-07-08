@@ -6,6 +6,7 @@
         :key="tap.name"
         outlined
         class="mx-auto my-12 elevation-5"
+        @click="$nuxt.$emit('tap-selected', tap)"
       >
         <v-card-text>
           Latitude: {{ tap.position.lat }}

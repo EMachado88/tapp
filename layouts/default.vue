@@ -30,6 +30,7 @@
 import { defineComponent } from 'vue'
 
 import { NavItem } from '@/types/NavItem'
+import { Tap } from '@/types/Tap'
 
 export default defineComponent({
   name: 'DefaultLayout',
@@ -52,6 +53,14 @@ export default defineComponent({
           path: '/settings'
         } as NavItem
       ] as NavItem[]
+    }
+  },
+  created () {
+    this.$nuxt.$on('tap-selected', this.handleTapSelect)
+  },
+  methods: {
+    handleTapSelect (_tap: Tap) {
+      this.$nuxt.$router.push('/map')
     }
   }
 })
