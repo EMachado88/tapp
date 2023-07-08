@@ -23,11 +23,6 @@ export default {
   css: [
   ],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    { src: '~/plugins/google-maps.js', mode: 'client' }
-  ],
-
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -46,7 +41,10 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
-    '@nuxt/content'
+    '@nuxt/content',
+    ['nuxt-gmaps', {
+      key: 'AIzaSyCqcJsmjV5tuMiKXOzzlSSQv3HmUsMtacQ'
+    }]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

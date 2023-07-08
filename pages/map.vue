@@ -1,5 +1,5 @@
 <template>
-  <GmapMap
+  <GMap
     ref="map"
     :center="mapCenter"
     :zoom="18"
@@ -10,21 +10,21 @@
     }"
     style="width: 100%; height: 100%"
   >
-    <GmapMarker
+    <GMapMarker
       :position="userPosition"
       :clickable="true"
-      icon="/images/rec.png"
+      :options="{ icon: '/images/rec.png' }"
       @click="mapCenter = userPosition"
     />
 
-    <GmapMarker
+    <GMapMarker
       v-for="(tap, index) in taps"
       :key="index"
       :position="tap.position"
       :clickable="true"
       @click="mapCenter = tap.position"
     />
-  </GmapMap>
+  </GMap>
 </template>
 
 <script lang="ts">
@@ -72,3 +72,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss">
+.GMap__Wrapper {
+  height: 100%;
+}
+</style>
