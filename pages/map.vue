@@ -14,7 +14,6 @@
         :position="userPosition"
         :clickable="true"
         :options="{ icon: '/images/rec.png' }"
-        @click="mapCenter = userPosition"
       />
 
       <GMapMarker
@@ -22,7 +21,6 @@
         :key="index"
         :position="tap.position"
         :clickable="true"
-        @click="mapCenter = tap.position"
       />
     </GMap>
 
@@ -34,7 +32,6 @@
       absolute
       bottom
       right
-      @click="center()"
     >
       <v-icon>mdi-crosshairs-gps</v-icon>
     </v-btn>
@@ -43,6 +40,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { mapGetters } from 'vuex'
 
 import { taps } from '~/mocks/taps'
 
@@ -50,46 +48,14 @@ export default defineComponent({
   name: 'MapPage',
   data () {
     return {
-      taps,
-      mapCenter: { lat: 0, lng: 0 },
-      userPosition: { lat: 0, lng: 0 },
-      watchId: 0
+      taps
     }
   },
-  mounted () {
-    this.geolocateAndCenter()
-  },
-  beforeUnmount () {
-    navigator.geolocation.clearWatch(this.watchId)
-  },
-  methods: {
-    geolocateAndCenter () {
-      // Get current position and center map on it
-      navigator.geolocation.getCurrentPosition((position) => {
-        const positionLatLng = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }
-        this.mapCenter = positionLatLng
-        this.userPosition = positionLatLng
-      })
-
-      // Watch position and move user marker
-      this.watchId = navigator.geolocation.watchPosition((position) => {
-        const positionLatLng = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }
-        this.userPosition = positionLatLng
-      },
-      error => console.error(error), // eslint-disable-line
-      {
-        enableHighAccuracy: true
-      })
-    },
-    center () {
-      this.mapCenter = this.userPosition
-    }
+  computed: {
+    ...mapGetters({
+      userPosition: 'position/getUserPosition',
+      mapCenter: 'position/getMapCenter'
+    })
   }
 })
 </script>

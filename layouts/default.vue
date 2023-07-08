@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <v-main class="main">
-      <Nuxt />
+      <Nuxt @tap-selected="handleTapSelect" />
     </v-main>
     <v-footer fixed padless>
       <v-card flat tile width="100%" class="red lighten-1 text-center">
@@ -57,6 +57,9 @@ export default defineComponent({
   },
   created () {
     this.$nuxt.$on('tap-selected', this.handleTapSelect)
+  },
+  mounted () {
+    this.$store.dispatch('position/setUserPosition')
   },
   methods: {
     handleTapSelect (_tap: Tap) {
