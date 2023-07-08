@@ -8,7 +8,6 @@
       zoomControl: false,
       disableDefaultUI: true
     }"
-    style="width: 100%; height: 100%"
   >
     <GMapMarker
       :position="userPosition"
@@ -74,6 +73,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.GMap {
+  width: 100%;
+  height: 100%;
+}
+
 .GMap__Wrapper {
   height: 100%;
 }
