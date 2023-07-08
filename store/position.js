@@ -20,9 +20,6 @@ export const mutations = {
   setWatchId (state, watchId) {
     state.watchId = watchId
   },
-  centerMap (state) {
-    state.mapCenter = state.userPosition
-  },
   setMapCenter (state, position) {
     state.mapCenter = position
   }
@@ -39,7 +36,7 @@ export const actions = {
       commit('setUserPosition', positionLatLng)
 
       if (!(state.userPosition.lat === 0 && state.userPosition.lng === 0)) {
-        commit('centerMap')
+        commit('setMapCenter', state.userPosition)
       }
     },
     error => console.error(error), // eslint-disable-line
@@ -47,8 +44,10 @@ export const actions = {
       enableHighAccuracy: true
     }))
   },
-  centerMap ({ commit }) {
-    commit('centerMap')
+  centerMap ({ commit, state }, map) {
+    commit('setMapCenter', state.userPosition)
+    console.log(map)
+    map.initMap()
   },
   setMapCenter ({ commit }, position) {
     commit('setMapCenter', position)

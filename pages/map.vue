@@ -2,6 +2,7 @@
   <div id="map-wrap">
     <GMap
       ref="map"
+      language="en"
       :center="mapCenter"
       :zoom="18"
       :options="{
@@ -9,7 +10,7 @@
         zoomControl: false,
         disableDefaultUI: true
       }"
-      @center_changed="$store.dispatch('position/setMapCenter', $event.map.center)"
+      @center_changed="$store.dispatch('position/setMapCenter', { lat: $event.map.center.lat(), lng: $event.map.center.lng()})"
     >
       <GMapMarker
         :position="userPosition"
@@ -33,7 +34,7 @@
       absolute
       bottom
       right
-      @click="$store.dispatch('position/centerMap')"
+      @click="$store.dispatch('position/centerMap', $refs.map)"
     >
       <v-icon>mdi-crosshairs-gps</v-icon>
     </v-btn>
