@@ -39,7 +39,7 @@ export default defineComponent({
       navItems: [
         {
           name: 'Home',
-          icon: 'mdi-home',
+          icon: 'mdi-format-list-bulleted-square',
           path: '/'
         } as NavItem,
         {
