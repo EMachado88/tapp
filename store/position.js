@@ -40,7 +40,9 @@ export const actions = {
     },
     error => console.error(error), // eslint-disable-line
     {
-      enableHighAccuracy: true
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
     }))
   },
   async centerMap ({ commit, state }, map) {
