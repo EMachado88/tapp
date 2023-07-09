@@ -46,7 +46,11 @@ export const actions = {
         commit('setMapCenter', state.userPosition)
       }
     },
-    error => console.error(error), // eslint-disable-line
+    // Error callback
+    (error) => {
+      console.log(error) // eslint-disable-line no-console
+    },
+    // Options
     {
       enableHighAccuracy: true,
       maximumAge: 0
