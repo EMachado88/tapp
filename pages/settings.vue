@@ -1,9 +1,10 @@
 <template>
   <v-container>
-    <h5 class="text-h5">
-      <v-icon class="mr-2" size="32px">
+    <h5 class="text-h5 d-flex align-center">
+      <v-icon class="mr-3" size="32px">
         mdi-cog
-      </v-icon> Settings
+      </v-icon>
+      Settings
     </h5>
   </v-container>
 </template>

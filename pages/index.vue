@@ -1,16 +1,17 @@
 <template>
   <v-container>
-    <h5 class="text-h5">
-      <v-icon class="mr-2" size="32px">
+    <h5 class="text-h5 d-flex align-center">
+      <v-icon class="mr-3" size="32px">
         mdi-format-list-bulleted-square
-      </v-icon> Taps list
+      </v-icon>
+      Taps list
     </h5>
-    <article>
+    <section class="mt-10">
       <v-card
         v-for="tap in processedTaps"
         :key="tap.id"
         outlined
-        class="mx-auto my-12 elevation-5"
+        class="mx-auto my-5 elevation-5"
         @click="$nuxt.$emit('tap-selected', tap)"
       >
         <v-card-text>
@@ -22,7 +23,7 @@
           Distance: {{ tap.distance }}m
         </v-card-text>
       </v-card>
-    </article>
+    </section>
   </v-container>
 </template>
 
