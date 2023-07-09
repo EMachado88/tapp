@@ -5,4 +5,5 @@ export interface Tap {
     lat: number,
     lng: number
   }
+  rating?: number
 }

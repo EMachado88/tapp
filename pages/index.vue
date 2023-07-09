@@ -14,13 +14,21 @@
         class="mx-auto my-5 elevation-5"
         @click="$nuxt.$emit('tap-selected', tap)"
       >
-        <v-card-text>
-          <h6 class="text-h6">
-            {{ tap.name }}
-          </h6>
-          <span class="text-caption">{{ tap.position.lat }}, {{ tap.position.lng }}</span>
-          <br>
-          Distance: {{ tap.distance }}m
+        <v-card-text class="d-flex align-center">
+          <div class="flex-grow-1">
+            <h6 class="text-h6">
+              {{ tap.name }}
+            </h6>
+            <span class="text-caption">{{ tap.position.lat }}, {{ tap.position.lng }}</span>
+            <br>
+            Distance: {{ tap.distance }}m
+          </div>
+
+          <div class="d-flex justify-end">
+            <v-icon v-for="(_star, index) in Array(tap.rating)" :key="index" size="26px">
+              mdi-star
+            </v-icon>
+          </div>
         </v-card-text>
       </v-card>
     </section>

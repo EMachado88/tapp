@@ -7,7 +7,8 @@ export const taps = [
     position: {
       lat: 41.6367603208299,
       lng: -8.14457114236497
-    }
+    },
+    rating: 5
   },
   {
     id: 2,
@@ -15,6 +16,7 @@ export const taps = [
     position: {
       lat: 41.635420410118236,
       lng: -8.141491148488699
-    }
+    },
+    rating: 1
   }
 ] as Tap[]
