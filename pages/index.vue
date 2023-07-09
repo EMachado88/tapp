@@ -46,7 +46,7 @@ export default defineComponent({
           ...tap,
           distance
         }
-      })
+      }).sort((a: any, b: any) => a.distance - b.distance)
     }
   }
 })
