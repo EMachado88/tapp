@@ -23,6 +23,7 @@
         :key="index"
         :position="tap.position"
         :clickable="true"
+        :options="{ icon: `${assetsPath}/images/drop.png` }"
         @click="handleMarkerClick(tap)"
       />
     </GMap>
