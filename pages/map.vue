@@ -23,6 +23,7 @@
         :key="index"
         :position="tap.position"
         :clickable="true"
+        @click="handleMarkerClick(tap)"
       />
     </GMap>
 
@@ -47,6 +48,8 @@ import { mapGetters } from 'vuex'
 
 import { taps } from '~/mocks/taps'
 
+import { Tap } from '~/types/Tap'
+
 export default defineComponent({
   name: 'MapPage',
   data () {
@@ -61,6 +64,11 @@ export default defineComponent({
     }),
     assetsPath () {
       return process.env.NODE_ENV === 'production' ? '/tapp' : ''
+    }
+  },
+  methods: {
+    handleMarkerClick (tap: Tap) {
+      window.location.href = `google.navigation:q=${tap.position.lat},${tap.position.lng}&mode=w`
     }
   }
 })
