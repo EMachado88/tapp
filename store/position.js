@@ -1,3 +1,5 @@
+import haversine from 'haversine-distance'
+
 export const state = () => ({
   mapCenter: { lat: 0, lng: 0 },
   userPosition: { lat: 0, lng: 0 },
@@ -10,6 +12,12 @@ export const getters = {
   },
   getMapCenter (state) {
     return state.mapCenter
+  },
+  // Returns the distance from user, in meters
+  getDistanceFromUser (state) {
+    return (position) => {
+      return parseInt(haversine(state.userPosition, position))
+    }
   }
 }
 
