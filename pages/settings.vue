@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <h4 class="text-h4">
+    <h5 class="text-h5">
       <v-icon class="mr-2" size="32px">
         mdi-cog
       </v-icon> Settings
-    </h4>
+    </h5>
   </v-container>
 </template>
 

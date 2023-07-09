@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <h4 class="text-h4">
+    <h5 class="text-h5">
       <v-icon class="mr-2" size="32px">
         mdi-format-list-bulleted-square
       </v-icon> Taps list
-    </h4>
+    </h5>
     <article>
       <v-card
         v-for="tap in processedTaps"
@@ -14,9 +14,9 @@
         @click="$nuxt.$emit('tap-selected', tap)"
       >
         <v-card-text>
-          <h5 class="text-h5">
+          <h6 class="text-h6">
             {{ tap.name }}
-          </h5>
+          </h6>
           <span class="text-caption">{{ tap.position.lat }}, {{ tap.position.lng }}</span>
           <br>
           Distance: {{ tap.distance }}m
