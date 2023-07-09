@@ -53,7 +53,7 @@ export default {
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
     ['nuxt-gmaps', {
-      key: 'AIzaSyCqcJsmjV5tuMiKXOzzlSSQv3HmUsMtacQ'
+      key: process.env.GOOGLE_MAPS_API_KEY
     }]
   ],
 
