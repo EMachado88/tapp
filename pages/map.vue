@@ -47,21 +47,15 @@
 import { defineComponent } from 'vue'
 import { mapGetters } from 'vuex'
 
-import { taps } from '~/mocks/taps'
-
 import { Tap } from '~/types/Tap'
 
 export default defineComponent({
   name: 'MapPage',
-  data () {
-    return {
-      taps
-    }
-  },
   computed: {
     ...mapGetters({
       userPosition: 'position/getUserPosition',
-      mapCenter: 'position/getMapCenter'
+      mapCenter: 'position/getMapCenter',
+      taps: 'taps/getTaps'
     }),
     assetsPath () {
       return process.env.NODE_ENV === 'production' ? '/tapp' : ''
