@@ -58,6 +58,8 @@ export default defineComponent({
     }
   },
   created () {
+    this.$store.dispatch('taps/fetchTaps')
+
     this.$nuxt.$on('tap-selected', this.handleTapSelect)
   },
   mounted () {

@@ -21,7 +21,7 @@
             </h6>
             <span class="text-caption">{{ tap.position.lat }}, {{ tap.position.lng }}</span>
             <br>
-            Distance: {{ tap.distance }}m
+            <span v-if="tap.distance">Distance: {{ tap.distance }}m</span>
           </div>
 
           <div class="d-flex justify-end">
@@ -37,17 +37,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
-import { taps } from '@/mocks/taps'
+import { mapGetters } from 'vuex'
 
 export default defineComponent({
   name: 'IndexPage',
-  data () {
-    return {
-      taps
-    }
-  },
   computed: {
+    ...mapGetters({
+      taps: 'taps/getTaps'
+    }),
     processedTaps (): any[] {
       return this.taps.map((tap: any) => {
         const distance = this.$store.getters['position/getDistanceFromUser'](tap.position)
