@@ -22,12 +22,12 @@ export const actions = {
       const taps = data.map((tap) => {
         return {
           id: tap.id,
-          name: tap.attributes.name,
+          name: tap.name,
           position: {
-            lat: tap.attributes.position.lat,
-            lng: tap.attributes.position.lng
+            lat: tap.latitude,
+            lng: tap.longitude
           },
-          rating: tap.attributes.rating
+          rating: tap.rating
         }
       })
 
