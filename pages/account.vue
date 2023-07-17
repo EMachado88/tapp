@@ -10,7 +10,7 @@
     <section class="mt-10">
       <v-card outlined class="mx-auto my-5 elevation-5">
         <v-card-text>
-          <form @submit.prevent="login">
+          <v-form v-if="!user" ref="loginForm" :disabled="loginFormDisabled" @submit.prevent="login">
             <v-container>
               <v-row>
                 <v-col cols="12">
@@ -40,21 +40,44 @@
 
               <v-row>
                 <v-col cols="12">
-                  <v-btn type="submit" color="red lighten-1 mt-2">
+                  <v-btn type="submit" color="blue lighten-1 mt-2">
                     Login
                   </v-btn>
                 </v-col>
               </v-row>
             </v-container>
-          </form>
+          </v-form>
+
+          <div v-else>
+            <v-card-title>
+              <h5 class="text-h5">
+                Welcome back, {{ user.username }}
+              </h5>
+            </v-card-title>
+
+            <v-card-actions>
+              <v-btn color="blue lighten-1" @click="logout">
+                Logout
+              </v-btn>
+            </v-card-actions>
+          </div>
         </v-card-text>
       </v-card>
     </section>
+
+    <v-snackbar
+      v-model="loginErrorSnackbar"
+      color="red"
+      class="elevation-5"
+    >
+      Wrong email or password
+    </v-snackbar>
   </v-container>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { mapGetters } from 'vuex'
 
 export default defineComponent({
   name: 'AccountPage',
@@ -69,13 +92,35 @@ export default defineComponent({
       passwordRules: [
         (v: string) => !!v || 'Password is required'
       ],
-      showPassword: false
+      showPassword: false,
+      loginFormDisabled: false,
+      loginErrorSnackbar: false
     }
   },
+  computed: {
+    ...mapGetters({
+      user: 'auth/getUser'
+    })
+  },
   methods: {
-    login (e: Event) {
-      e.preventDefault()
-      console.log('login') // eslint-disable-line no-console
+    async login () {
+      if (!this.loginFormDisabled && (this.$refs.loginForm as Vue & { validate: () => boolean }).validate()) {
+        this.loginFormDisabled = true
+
+        try {
+          await this.$store.dispatch('auth/login', {
+            identifier: this.email,
+            password: this.password
+          })
+        } catch (error) {
+          this.loginErrorSnackbar = true
+        } finally {
+          this.loginFormDisabled = false
+        }
+      }
+    },
+    logout () {
+      this.$store.dispatch('auth/logout')
     }
   }
 })
