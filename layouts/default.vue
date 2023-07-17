@@ -43,17 +43,17 @@ export default defineComponent({
           name: 'Home',
           icon: 'mdi-format-list-bulleted-square',
           path: '/'
-        } as NavItem,
+        },
         {
           name: 'Map',
           icon: 'mdi-map-marker',
           path: '/map'
-        } as NavItem,
+        },
         {
-          name: 'Settings',
-          icon: 'mdi-cog',
-          path: '/settings'
-        } as NavItem
+          name: 'Profile',
+          icon: 'mdi-account',
+          path: '/account'
+        }
       ] as NavItem[]
     }
   },
