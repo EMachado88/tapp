@@ -31,5 +31,20 @@ export const actions = {
   logout ({ commit }) {
     this.$axios.setToken(false)
     commit('setUser', null)
+  },
+  async register ({ _commit, dispatch }, { username, email, password, firstName, lastName }) {
+    try {
+      await this.$axios.$post('/auth/local/register', {
+        username,
+        email,
+        password,
+        firstName,
+        lastName
+      })
+
+      await dispatch('login', { identifier: email, password })
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 }
