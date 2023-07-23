@@ -3,7 +3,7 @@
     <v-main class="main">
       <Nuxt @tap-selected="handleTapSelect" />
     </v-main>
-    <v-footer fixed padless>
+    <v-footer padless>
       <v-card flat tile width="100%" class="blue lighten-1 text-center">
         <v-card-text>
           <nav>
