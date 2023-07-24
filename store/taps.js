@@ -17,9 +17,9 @@ export const mutations = {
 export const actions = {
   async fetchTaps ({ commit }) {
     try {
-      const { data } = await this.$axios.$get('/taps')
+      const response = await this.$axios.$get('/taps')
 
-      const taps = data.map((tap) => {
+      const taps = response.map((tap) => {
         return {
           id: tap.id,
           name: tap.name,
