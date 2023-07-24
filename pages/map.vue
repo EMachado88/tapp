@@ -30,15 +30,28 @@
 
     <v-btn
       color="red"
-      class="center-button lighten-1 elevation-5"
+      class="bottom-button lighten-1 elevation-5"
       fab
       dark
-      absolute
       bottom
       right
+      absolute
       @click="$store.dispatch('position/centerMap', $refs.map)"
     >
       <v-icon>mdi-crosshairs-gps</v-icon>
+    </v-btn>
+
+    <v-btn
+      color="red"
+      class="bottom-button lighten-1 elevation-5"
+      fab
+      dark
+      bottom
+      left
+      absolute
+      to="/taps/new"
+    >
+      <v-icon>mdi-plus</v-icon>
     </v-btn>
   </div>
 </template>
@@ -64,6 +77,9 @@ export default defineComponent({
   methods: {
     handleMarkerClick (tap: Tap) {
       window.location.href = `google.navigation:q=${tap.position.lat},${tap.position.lng}&mode=w`
+    },
+    handleAddTapClick () {
+      this.$router.push('/taps/new')
     }
   }
 })
@@ -84,7 +100,7 @@ export default defineComponent({
     height: 100%;
   }
 
-  .center-button {
+  .bottom-button {
     bottom: 20px;
   }
 }
