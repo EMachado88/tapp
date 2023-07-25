@@ -14,7 +14,7 @@
             <div v-if="user">
               <v-card-title>
                 <h5 class="text-h5">
-                  Welcome back, {{ user.username }}
+                  Welcome back, {{ user.firstName }} {{ user.lastName }}
                 </h5>
               </v-card-title>
 
@@ -33,6 +33,7 @@
 
               <v-tabs-items v-model="tab">
                 <v-tab-item>
+                  <!-- Login form -->
                   <v-form ref="loginForm" :disabled="loginFormDisabled" @submit.prevent="login">
                     <v-container>
                       <v-row>
@@ -70,25 +71,19 @@
                       </v-row>
                     </v-container>
                   </v-form>
+                  <!-- end Login form -->
                 </v-tab-item>
 
                 <v-tab-item>
+                  <!-- Register form -->
                   <v-form ref="registerForm" :disabled="registerFormDisabled" @submit.prevent="register">
                     <v-container>
                       <v-row>
-                        <v-col cols="12" md="6">
+                        <v-col cols="12">
                           <v-text-field
                             v-model="email"
                             :rules="emailRules"
                             label="Email"
-                            required
-                          />
-                        </v-col>
-                        <v-col cols="12" md="6">
-                          <v-text-field
-                            v-model="username"
-                            :rules="usernameRules"
-                            label="Username"
                             required
                           />
                         </v-col>
@@ -148,6 +143,7 @@
                       </v-row>
                     </v-container>
                   </v-form>
+                  <!-- end Register form -->
                 </v-tab-item>
               </v-tabs-items>
             </div>
@@ -169,7 +165,7 @@
       color="red"
       class="elevation-5"
     >
-      Email or username already taken
+      Email already taken
     </v-snackbar>
   </v-container>
 </template>
@@ -190,10 +186,6 @@ export default {
       passwordRules: [
         v => !!v || 'Password is required',
         v => /^(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,30}$/.test(v) || 'Password must be 8-30 characters long and contain at least one uppercase letter, one number and one special character'
-      ],
-      username: '',
-      usernameRules: [
-        v => !!v || 'Username is required'
       ],
       firstName: '',
       firstNameRules: [
@@ -249,7 +241,7 @@ export default {
         try {
           await this.$store.dispatch('auth/register', {
             email: this.email,
-            username: this.username,
+            username: this.email,
             firstName: this.firstName,
             lastName: this.lastName,
             password: this.password
