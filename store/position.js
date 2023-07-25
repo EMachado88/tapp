@@ -49,6 +49,7 @@ export const actions = {
     // Error callback
     (error) => {
       console.log(error) // eslint-disable-line no-console
+      this.$router.push('/enable-location')
     },
     // Options
     {
