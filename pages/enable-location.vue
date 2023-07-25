@@ -8,7 +8,7 @@
         Please enable location
       </h5>
     </div>
-    <v-btn color="primary" to="/">
+    <v-btn block color="primary" to="/">
       Retry
     </v-btn>
   </v-container>
