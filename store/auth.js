@@ -1,5 +1,6 @@
 export const state = () => ({
-  user: null
+  user: null,
+  accessToken: null
 })
 
 export const getters = {
@@ -11,18 +12,21 @@ export const getters = {
 export const mutations = {
   setUser (state, user) {
     state.user = user
+  },
+  setAccessToken (state, accessToken) {
+    state.accessToken = accessToken
   }
 }
 
 export const actions = {
-  async login ({ commit }, { identifier, password }) {
+  async login ({ commit }, { email, password }) {
     try {
-      const { jwt, user } = await this.$axios.$post('/auth/local', {
-        identifier,
+      const { accessToken, user } = await this.$axios.$post('/auth/login', {
+        email,
         password
       })
 
-      this.$axios.setToken(jwt, 'Bearer')
+      this.$axios.setToken(accessToken, 'Bearer')
       commit('setUser', user)
     } catch (error) {
       return Promise.reject(error)
@@ -34,7 +38,7 @@ export const actions = {
   },
   async register ({ _commit, dispatch }, { username, email, password, firstName, lastName }) {
     try {
-      await this.$axios.$post('/auth/local/register', {
+      await this.$axios.$post('/auth/signup', {
         username,
         email,
         password,
@@ -42,7 +46,7 @@ export const actions = {
         lastName
       })
 
-      await dispatch('login', { identifier: email, password })
+      await dispatch('login', { email, password })
     } catch (error) {
       return Promise.reject(error)
     }

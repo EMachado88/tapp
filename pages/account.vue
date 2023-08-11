@@ -42,6 +42,7 @@
                             v-model="email"
                             :rules="emailRules"
                             label="Email"
+                            type="email"
                             append-icon="mdi-email"
                             required
                           />
@@ -84,6 +85,7 @@
                             v-model="email"
                             :rules="emailRules"
                             label="Email"
+                            type="email"
                             required
                           />
                         </v-col>
@@ -221,7 +223,7 @@ export default {
 
         try {
           await this.$store.dispatch('auth/login', {
-            identifier: this.email,
+            email: this.email,
             password: this.password
           })
         } catch (error) {
