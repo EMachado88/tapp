@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <v-main class="main">
-      <Nuxt @tap-selected="handleTapSelect" />
+      <Nuxt />
     </v-main>
     <v-footer padless>
       <v-card flat tile width="100%" class="blue lighten-1 text-center">
@@ -36,7 +36,7 @@ import { Tap } from '@/types/Tap'
 
 export default defineComponent({
   name: 'DefaultLayout',
-  data () {
+  data() {
     return {
       navItems: [
         {
@@ -57,16 +57,16 @@ export default defineComponent({
       ] as NavItem[]
     }
   },
-  created () {
+  created() {
     this.$store.dispatch('taps/fetchTaps')
 
     this.$nuxt.$on('tap-selected', this.handleTapSelect)
   },
-  mounted () {
+  mounted() {
     this.$store.dispatch('position/setUserPosition')
   },
   methods: {
-    handleTapSelect (tap: Tap) {
+    handleTapSelect(tap: Tap) {
       this.$nuxt.$router.push('/map')
       this.$store.dispatch('position/setMapCenter', tap.position)
     }
