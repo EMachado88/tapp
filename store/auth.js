@@ -10,21 +10,25 @@ export const getters = {
 }
 
 export const mutations = {
-  setUser (state, user) {
+  setUser(state, user) {
     state.user = user
   },
-  setAccessToken (state, accessToken) {
+  setAccessToken(state, accessToken) {
     state.accessToken = accessToken
   }
 }
 
 export const actions = {
-  async login ({ commit }, { email, password }) {
+  async login({ commit }, { email, password }) {
     try {
       const { accessToken, user } = await this.$axios.$post('/auth/login', {
         email,
         password
       })
+
+      if (!user) {
+        return Promise.reject(new Error('Invalid user'))
+      }
 
       this.$axios.setToken(accessToken, 'Bearer')
       commit('setUser', user)
@@ -32,11 +36,14 @@ export const actions = {
       return Promise.reject(error)
     }
   },
-  logout ({ commit }) {
+  logout({ commit }) {
     this.$axios.setToken(false)
     commit('setUser', null)
   },
-  async register ({ _commit, dispatch }, { username, email, password, firstName, lastName }) {
+  async register(
+    { dispatch },
+    { username, email, password, firstName, lastName }
+  ) {
     try {
       await this.$axios.$post('/auth/signup', {
         username,
@@ -47,6 +54,21 @@ export const actions = {
       })
 
       await dispatch('login', { email, password })
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+  async deleteAccount({ commit, dispatch }, { password }) {
+    try {
+      await this.$axios.$delete('/users', {
+        email: this.state.auth.user.email,
+        password
+      })
+
+      dispatch('logout')
+
+      this.$axios.setToken(false)
+      commit('setUser', null)
     } catch (error) {
       return Promise.reject(error)
     }

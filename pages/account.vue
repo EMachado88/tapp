@@ -19,8 +19,12 @@
               </v-card-title>
 
               <v-card-actions>
-                <v-btn block color="blue lighten-1" @click="logout">
+                <v-btn color="blue lighten-1" @click="logout">
                   Logout
+                </v-btn>
+
+                <v-btn outlined color="red lighten-1" @click="deleteDialog = true">
+                  Delete Account
                 </v-btn>
               </v-card-actions>
             </div>
@@ -81,32 +85,16 @@
                     <v-container>
                       <v-row>
                         <v-col cols="12">
-                          <v-text-field
-                            v-model="email"
-                            :rules="emailRules"
-                            label="Email"
-                            type="email"
-                            required
-                          />
+                          <v-text-field v-model="email" :rules="emailRules" label="Email" type="email" required />
                         </v-col>
                       </v-row>
 
                       <v-row>
                         <v-col cols="12" md="6">
-                          <v-text-field
-                            v-model="firstName"
-                            :rules="firstNameRules"
-                            label="First name"
-                            required
-                          />
+                          <v-text-field v-model="firstName" :rules="firstNameRules" label="First name" required />
                         </v-col>
                         <v-col cols="12" md="6">
-                          <v-text-field
-                            v-model="lastName"
-                            :rules="lastNameRules"
-                            label="Last name"
-                            required
-                          />
+                          <v-text-field v-model="lastName" :rules="lastNameRules" label="Last name" required />
                         </v-col>
                       </v-row>
 
@@ -154,21 +142,64 @@
       </section>
     </client-only>
 
-    <v-snackbar
-      v-model="loginErrorSnackbar"
-      color="red"
-      class="elevation-5"
-    >
+    <v-snackbar v-model="loginErrorSnackbar" color="red" class="elevation-5">
       Wrong email or password
     </v-snackbar>
 
-    <v-snackbar
-      v-model="registerErrorSnackbar"
-      color="red"
-      class="elevation-5"
-    >
+    <v-snackbar v-model="registerErrorSnackbar" color="red" class="elevation-5">
       Email already taken
     </v-snackbar>
+
+    <v-snackbar v-model="deleteErrorSnackbar" color="red" class="elevation-5">
+      Wrong password
+    </v-snackbar>
+
+    <v-dialog
+      v-model="deleteDialog"
+      width="500"
+    >
+      <v-card>
+        <v-card-title class="text-h5">
+          Account deletion
+        </v-card-title>
+
+        <v-card-text>
+          Are you sure you want to delete your account?
+          <br>
+          Please enter your password to confirm.
+
+          <v-text-field
+            v-model="password"
+            :type="showPassword ? 'text' : 'password'"
+            :rules="passwordRules"
+            label="Password"
+            class="mt-5"
+            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            required
+            @click:append="() => (showPassword = !showPassword)"
+          />
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn
+            color="primary"
+            text
+            @click="deleteDialog = false"
+          >
+            Cancel
+          </v-btn>
+
+          <v-spacer />
+
+          <v-btn
+            color="red lighten-1"
+            @click="deleteAccount"
+          >
+            Delete
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -177,7 +208,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'AccountPage',
-  data () {
+  data() {
     return {
       email: '',
       emailRules: [
@@ -208,7 +239,9 @@ export default {
       loginErrorSnackbar: false,
       registerFormDisabled: false,
       registerErrorSnackbar: false,
-      tab: 0
+      deleteErrorSnackbar: false,
+      tab: 0,
+      deleteDialog: false
     }
   },
   computed: {
@@ -217,15 +250,17 @@ export default {
     })
   },
   methods: {
-    async login () {
+    async login() {
       if (!this.loginFormDisabled && this.$refs.loginForm.validate()) {
         this.loginFormDisabled = true
 
         try {
-          await this.$store.dispatch('auth/login', {
+          const result = await this.$store.dispatch('auth/login', {
             email: this.email,
             password: this.password
           })
+
+          console.log(result)
         } catch (error) {
           this.loginErrorSnackbar = true
         } finally {
@@ -233,10 +268,10 @@ export default {
         }
       }
     },
-    logout () {
+    logout() {
       this.$store.dispatch('auth/logout')
     },
-    async register () {
+    async register() {
       if (!this.registerFormDisabled && this.$refs.registerForm.validate()) {
         this.registerFormDisabled = true
 
@@ -253,6 +288,19 @@ export default {
         } finally {
           this.registerFormDisabled = false
         }
+      }
+    },
+    async deleteAccount() {
+      const { password } = this
+      try {
+        await this.$store.dispatch('auth/deleteAccount', {
+          password
+        })
+      } catch (error) {
+        this.deleteErrorSnackbar = true
+      } finally {
+        this.password = ''
+        this.deleteDialog = false
       }
     }
   }
