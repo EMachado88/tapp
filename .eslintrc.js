@@ -9,6 +9,6 @@ module.exports = {
   plugins: ['jest'],
   // add your custom rules here
   rules: {
-    'space-before-function-paren': 'on'
+    'space-before-function-paren': 0
   }
 }
