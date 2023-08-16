@@ -16,20 +16,18 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: ['~/assets/main.scss'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   app: {
-    baseURL
+    baseURL,
+    pageTransition: { name: 'page', mode: 'out-in' }
   },
 
   router: {
@@ -52,9 +50,12 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    ['nuxt-gmaps', {
-      key: process.env.GOOGLE_MAPS_API_KEY
-    }]
+    [
+      'nuxt-gmaps',
+      {
+        key: process.env.GOOGLE_MAPS_API_KEY
+      }
+    ]
   ],
 
   plugins: [{ src: '~/plugins/vuex-persist.js', mode: 'client' }],
@@ -95,6 +96,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: {}
 }
