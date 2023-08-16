@@ -5,13 +5,10 @@ module.exports = {
     'jest/globals': true,
     node: true
   },
-  extends: [
-    '@nuxtjs/eslint-config-typescript',
-    'plugin:nuxt/recommended'
-  ],
-  plugins: [
-    'jest'
-  ],
+  extends: ['@nuxtjs/eslint-config-typescript', 'plugin:nuxt/recommended'],
+  plugins: ['jest'],
   // add your custom rules here
-  rules: {}
+  rules: {
+    'space-before-function-paren': 'on'
+  }
 }
