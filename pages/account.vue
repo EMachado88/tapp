@@ -1,11 +1,6 @@
 <template>
   <v-container>
-    <h5 class="text-h5 d-flex align-center">
-      <v-icon class="mr-3" size="32px">
-        mdi-account
-      </v-icon>
-      Account
-    </h5>
+    <Header icon="mdi-account" text="Account" />
 
     <client-only>
       <section class="mt-10">

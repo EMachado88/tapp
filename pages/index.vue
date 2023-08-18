@@ -1,11 +1,7 @@
 <template>
   <v-container>
-    <h5 class="text-h5 d-flex align-center">
-      <v-icon class="mr-3" size="32px">
-        mdi-format-list-bulleted-square
-      </v-icon>
-      Taps list
-    </h5>
+    <Header icon="mdi-format-list-bulleted-square" text="Taps list" />
+
     <section class="mt-10">
       <TapListItem v-for="tap in processedTaps" :key="tap.id" :tap="tap" />
     </section>

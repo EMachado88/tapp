@@ -1,11 +1,7 @@
 <template>
   <v-container>
-    <h5 class="text-h5 d-flex align-center">
-      <v-icon class="mr-3" size="32px">
-        mdi-map-marker
-      </v-icon>
-      Tap
-    </h5>
+    <Header icon="mdi-map-marker" text="Tap" />
+
     <section class="mt-10">
       <GMap
         v-if="tap.position.lat !== 0 && tap.position.lng !== 0"
