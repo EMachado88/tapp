@@ -8,7 +8,7 @@
     <v-card-text class="d-flex align-center">
       <div class="flex-grow-1">
         <h6 class="text-h6">
-          {{ tap.name }}
+          {{ tap.address }}
         </h6>
         <span v-if="tap.distance">{{ tap.distance }}m</span>
       </div>
