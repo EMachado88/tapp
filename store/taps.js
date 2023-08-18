@@ -5,6 +5,10 @@ export const state = () => ({
 export const getters = {
   getTaps: (state) => {
     return state.taps
+  },
+
+  getTapById: state => (id) => {
+    return state.taps.find(tap => tap.id === id)
   }
 }
 

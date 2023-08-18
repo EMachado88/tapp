@@ -76,7 +76,7 @@ export default defineComponent({
   },
   methods: {
     handleMarkerClick (tap: Tap) {
-      window.location.href = `google.navigation:q=${tap.position.lat},${tap.position.lng}&mode=w`
+      this.$router.push(`/taps/${tap.id}`)
     },
     handleAddTapClick () {
       this.$router.push('/taps/new')
