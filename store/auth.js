@@ -22,7 +22,7 @@ export const actions = {
   async login({ commit }, { email, password }) {
     try {
       const { accessToken, user } = await this.$axios.$post('/auth/login', {
-        email,
+        username: email,
         password
       })
 
