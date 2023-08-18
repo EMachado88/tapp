@@ -250,12 +250,10 @@ export default {
         this.loginFormDisabled = true
 
         try {
-          const result = await this.$store.dispatch('auth/login', {
+          await this.$store.dispatch('auth/login', {
             email: this.email,
             password: this.password
           })
-
-          console.log(result)
         } catch (error) {
           this.loginErrorSnackbar = true
         } finally {
