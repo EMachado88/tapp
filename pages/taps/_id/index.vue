@@ -6,6 +6,7 @@
       <GMap
         v-if="tap.position.lat !== 0 && tap.position.lng !== 0"
         ref="map"
+        class="map"
         language="en"
         :center="tap.position"
         :zoom="18"
@@ -67,3 +68,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.map {
+  height: 300px;
+
+  .GMap__Wrapper {
+    height: 100%;
+  }
+}
+</style>
