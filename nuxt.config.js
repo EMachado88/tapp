@@ -19,6 +19,17 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
+  pwa: {
+    manifest: {
+      name: 'Tapp',
+      short_name: 'Tapp',
+      lang: 'en',
+      display: 'standalone',
+      background_color: '#000000',
+      theme_color: '#000000'
+    }
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/main.scss'],
 
@@ -64,13 +75,6 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: process.env.API_URL || 'http://localhost:1337'
-  },
-
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    manifest: {
-      lang: 'en'
-    }
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
