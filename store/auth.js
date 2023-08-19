@@ -19,10 +19,10 @@ export const mutations = {
 }
 
 export const actions = {
-  async login({ commit }, { email, password }) {
+  async login({ commit }, { username, password }) {
     try {
       const { accessToken, user } = await this.$axios.$post('/auth/login', {
-        username: email,
+        username,
         password
       })
 
@@ -42,31 +42,26 @@ export const actions = {
   },
   async register(
     { dispatch },
-    { username, email, password, firstName, lastName }
+    { username, password, firstName, lastName }
   ) {
     try {
       await this.$axios.$post('/auth/signup', {
         username,
-        email,
         password,
         firstName,
         lastName
       })
 
-      await dispatch('login', { email, password })
+      await dispatch('login', { username, password })
     } catch (error) {
       return Promise.reject(error)
     }
   },
   async deleteAccount({ commit, dispatch }) {
     try {
-      await this.$axios.$delete('/auth/delete', {
-        username: this.state.auth.user.username
-      })
+      await this.$axios.$delete(`/auth/delete/${this.state.auth.user._id}`)
 
       dispatch('logout')
-
-      this.$axios.setToken(false)
       commit('setUser', null)
     } catch (error) {
       return Promise.reject(error)

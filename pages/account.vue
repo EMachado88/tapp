@@ -257,7 +257,6 @@ export default {
 
         try {
           await this.$store.dispatch('auth/register', {
-            email: this.email,
             username: this.email,
             firstName: this.firstName,
             lastName: this.lastName,
