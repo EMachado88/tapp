@@ -4,7 +4,7 @@
       <Nuxt />
     </v-main>
     <v-footer padless>
-      <v-card flat tile width="100%" class="blue lighten-1 text-center">
+      <v-card flat tile width="100%" class="primary text-center">
         <v-card-text>
           <nav>
             <span v-for="item in navItems" :key="item.icon" class="nav-item">

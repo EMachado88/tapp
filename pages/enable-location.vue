@@ -1,12 +1,7 @@
 <template>
   <v-container class="d-flex align-center justify-center flex-column">
     <div class="mb-5">
-      <h5 class="text-h5 d-flex align-center">
-        <v-icon class="mr-3" size="32px">
-          mdi-map-marker
-        </v-icon>
-        Please enable location
-      </h5>
+      <Header text="Please enable location" icon="mdi-map-marker" />
     </div>
     <v-btn block color="primary" to="/">
       Retry

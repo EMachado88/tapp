@@ -8,7 +8,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'HeaderComponent',
   props: {
     icon: {
@@ -20,5 +22,5 @@ export default {
       default: ''
     }
   }
-}
+})
 </script>

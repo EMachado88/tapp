@@ -14,11 +14,11 @@
               </v-card-title>
 
               <v-card-actions>
-                <v-btn color="blue lighten-1" @click="logout">
+                <v-btn color="primary" @click="logout">
                   Logout
                 </v-btn>
 
-                <v-btn outlined color="red lighten-1" @click="deleteDialog = true">
+                <v-btn outlined color="secondary" @click="deleteDialog = true">
                   Delete Account
                 </v-btn>
               </v-card-actions>
@@ -64,7 +64,7 @@
 
                       <v-row>
                         <v-col cols="12">
-                          <v-btn block type="submit" color="blue lighten-1 mt-2">
+                          <v-btn block type="submit" color="primary mt-2">
                             Login
                           </v-btn>
                         </v-col>
@@ -121,7 +121,7 @@
 
                       <v-row>
                         <v-col cols="12">
-                          <v-btn block type="submit" color="blue lighten-1 mt-2">
+                          <v-btn block type="submit" color="primary mt-2">
                             Register
                           </v-btn>
                         </v-col>
@@ -187,7 +187,7 @@
           <v-spacer />
 
           <v-btn
-            color="red lighten-1"
+            color="secondary"
             @click="deleteAccount"
           >
             Delete

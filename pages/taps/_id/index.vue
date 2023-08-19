@@ -47,8 +47,10 @@
   </v-container>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'TapPage',
   computed: {
     tap () {
@@ -66,7 +68,7 @@ export default {
       window.open(`https://www.google.com/maps/dir/?api=1&destination=${this.tap.position.lat},${this.tap.position.lng}&travelmode=walking`)
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

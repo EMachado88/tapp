@@ -29,8 +29,8 @@
     </GMap>
 
     <v-btn
-      color="red"
-      class="bottom-button lighten-1 elevation-5"
+      color="secondary"
+      class="bottom-button elevation-5"
       fab
       dark
       bottom
@@ -42,8 +42,8 @@
     </v-btn>
 
     <v-btn
-      color="red"
-      class="bottom-button lighten-1 elevation-5"
+      color="secondary"
+      class="bottom-button elevation-5"
       fab
       dark
       bottom
