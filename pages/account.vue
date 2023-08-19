@@ -160,19 +160,6 @@
 
         <v-card-text>
           Are you sure you want to delete your account?
-          <br>
-          Please enter your password to confirm.
-
-          <v-text-field
-            v-model="password"
-            :type="showPassword ? 'text' : 'password'"
-            :rules="passwordRules"
-            label="Password"
-            class="mt-5"
-            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-            required
-            @click:append="() => (showPassword = !showPassword)"
-          />
         </v-card-text>
 
         <v-card-actions>
@@ -284,11 +271,8 @@ export default {
       }
     },
     async deleteAccount() {
-      const { password } = this
       try {
-        await this.$store.dispatch('auth/deleteAccount', {
-          password
-        })
+        await this.$store.dispatch('auth/deleteAccount')
       } catch (error) {
         this.deleteErrorSnackbar = true
       } finally {

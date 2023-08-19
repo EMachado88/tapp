@@ -58,11 +58,10 @@ export const actions = {
       return Promise.reject(error)
     }
   },
-  async deleteAccount({ commit, dispatch }, { password }) {
+  async deleteAccount({ commit, dispatch }) {
     try {
-      await this.$axios.$delete('/users', {
-        email: this.state.auth.user.email,
-        password
+      await this.$axios.$delete('/auth/delete', {
+        username: this.state.auth.user.username
       })
 
       dispatch('logout')
