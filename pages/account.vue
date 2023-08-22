@@ -238,7 +238,7 @@ export default {
 
         try {
           await this.$store.dispatch('auth/login', {
-            email: this.email,
+            username: this.email,
             password: this.password
           })
         } catch (error) {
