@@ -50,7 +50,8 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/moment'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -69,7 +70,7 @@ export default {
     ]
   ],
 
-  plugins: [{ src: '~/plugins/vuex-persist.js', mode: 'client' }],
+  plugins: [{ src: '~/plugins/vuex-persist.js', mode: 'client' }, { src: '~/plugins/axios.js', mode: 'client' }],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
