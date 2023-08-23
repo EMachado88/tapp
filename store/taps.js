@@ -24,7 +24,8 @@ export const actions = {
       const response = await this.$axios.$get('/taps')
 
       const taps = response.map((tap) => {
-        const { _id, address, latitude, longitude } = tap
+        const { _id, address, latitude, longitude, reviews } = tap
+
         return {
           id: _id,
           address,
@@ -32,7 +33,8 @@ export const actions = {
             lat: latitude,
             lng: longitude
           },
-          rating: tap.rating
+          reviews,
+          rating: Math.round(reviews.reduce((total, review) => total + review.rating, 0) / reviews.length)
         }
       })
 

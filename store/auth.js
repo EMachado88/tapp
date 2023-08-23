@@ -1,11 +1,16 @@
 export const state = () => ({
-  user: null,
+  user: {
+    isAdmin: false
+  },
   accessToken: null
 })
 
 export const getters = {
   getUser: (state) => {
     return state.user
+  },
+  getAccessToken: (state) => {
+    return state.accessToken
   }
 }
 
@@ -30,8 +35,9 @@ export const actions = {
         return Promise.reject(new Error('Invalid user'))
       }
 
-      this.$axios.setToken(accessToken, 'Bearer')
       commit('setUser', user)
+      commit('setAccessToken', accessToken)
+      this.$axios.setToken(accessToken, 'Bearer')
     } catch (error) {
       return Promise.reject(error)
     }
