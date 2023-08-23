@@ -42,7 +42,7 @@
           <v-btn class="blue lighten-1 mb-2" @click="getDirections">
             <span>Directions</span>
           </v-btn>
-          <v-btn v-if="user.isAdmin" class="ml-2">
+          <v-btn v-if="user.isAdmin" :to="`/taps/${tap._id}/edit`" class="ml-2">
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
         </div>

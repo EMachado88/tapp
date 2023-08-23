@@ -76,7 +76,7 @@ export default defineComponent({
   },
   methods: {
     handleMarkerClick (tap: Tap) {
-      this.$router.push(`/taps/${tap.id}`)
+      this.$router.push(`/taps/${tap._id}`)
     },
     handleAddTapClick () {
       this.$router.push('/taps/new')

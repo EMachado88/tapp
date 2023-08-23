@@ -3,7 +3,7 @@
     <Header icon="mdi-format-list-bulleted-square" text="Taps list" />
 
     <section class="mt-10">
-      <TapListItem v-for="tap in processedTaps" :key="tap.id" :tap="tap" />
+      <TapListItem v-for="tap in processedTaps" :key="tap._id" :tap="tap" />
     </section>
   </v-container>
 </template>

@@ -1,6 +1,6 @@
 export interface Tap {
-  id: number,
-  name: string,
+  _id: number,
+  address: string,
   position: {
     lat: number,
     lng: number

@@ -8,7 +8,7 @@ export const getters = {
   },
 
   getTapById: state => (id) => {
-    return state.taps.find(tap => tap.id === id)
+    return state.taps.find(tap => tap._id === id)
   }
 }
 
@@ -27,7 +27,7 @@ export const actions = {
         const { _id, address, latitude, longitude, reviews } = tap
 
         return {
-          id: _id,
+          _id,
           address,
           position: {
             lat: latitude,
