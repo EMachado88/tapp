@@ -32,8 +32,13 @@
           </v-btn>
         </div>
 
-        <v-form :disabled="formDisabled" @submit.prevent="save">
-          <v-text-field v-model="tap.address" type="text" label="Address" required />
+        <v-form ref="tapForm" :disabled="formDisabled" @submit.prevent="save">
+          <v-text-field v-model="tap.address" type="text" label="Address" required :rules="addressRules" />
+
+          <v-switch
+            v-model="tap.active"
+            label="Active"
+          />
 
           <div v-if="hasChanged" class="d-flex justify-space-between">
             <v-btn type="submit" class="primary">
@@ -53,39 +58,36 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
+const initialTap = { _id: 0, address: '', position: { lat: 0, lng: 0 }, active: false, rating: 5 }
+
 export default defineComponent({
   name: 'TapEditPage',
   data() {
     return {
-      tap: { _id: 0, address: '', position: { lat: 0, lng: 0 }, reviews: [], rating: 5 },
-      initialTap: { _id: 0, address: '', position: { lat: 0, lng: 0 }, reviews: [], rating: 5 },
-      formDisabled: false
+      tap: initialTap,
+      initialTap,
+      formDisabled: false,
+      addressRules: [
+        (v: string) => !!v || 'Address is required'
+      ]
     }
   },
   async fetch() {
     const { data } = await this.$axios.get(`/taps/${this.$route.params.id}`)
 
-    this.tap = {
+    const initialData = {
       _id: data._id,
       address: data.address,
       position: {
         lat: data.latitude,
         lng: data.longitude
       },
-      reviews: data.reviews,
+      active: data.active,
       rating: Math.round(data.reviews.reduce((total: number, review: any) => total + review.rating, 0) / data.reviews.length)
     }
 
-    this.initialTap = {
-      _id: data._id,
-      address: data.address,
-      position: {
-        lat: data.latitude,
-        lng: data.longitude
-      },
-      reviews: data.reviews,
-      rating: Math.round(data.reviews.reduce((total: number, review: any) => total + review.rating, 0) / data.reviews.length)
-    }
+    this.tap = { ...initialData }
+    this.initialTap = { ...initialData }
   },
   computed: {
     assetsPath(): string {
@@ -112,12 +114,13 @@ export default defineComponent({
     async save() {
       this.formDisabled = true
 
-      if (this.hasChanged) {
+      if (this.hasChanged && (this.$refs.tapForm as HTMLFormElement).validate()) {
         try {
           await this.$axios.$patch(`/taps/${this.$route.params.id}`, {
             address: this.tap.address,
             latitude: this.tap.position.lat,
-            longitude: this.tap.position.lng
+            longitude: this.tap.position.lng,
+            active: this.tap.active
           })
 
           this.initialTap = { ...this.tap }
