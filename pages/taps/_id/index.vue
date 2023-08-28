@@ -153,7 +153,7 @@ export default defineComponent({
   },
   methods: {
     getDirections() {
-      window.open(`https://www.google.com/maps/dir/?api=1&destination=${this.tap.position.lat},${this.tap.position.lng}&travelmode=walking`)
+      window.open(`geo:${this.tap.position.lat},${this.tap.position.lng}`)
     },
     async submitReview() {
       const { comment, rating } = this.userReview
